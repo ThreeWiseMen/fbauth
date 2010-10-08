@@ -1,0 +1,4 @@
+.bundle
+**/*.sqlite3
+**/*.swp
+tmp
