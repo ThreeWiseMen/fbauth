@@ -1,4 +1,31 @@
 %h2 Welcome Page
 
-<fb:login-button perms="publish_stream,user_birthday">Log In</fb:login-button>
+#logged_in.box
+  %p You are authenticated and ready to start using the app!
 
+#unknown.box
+  %p You are not logged in, and/or need to authorize the application.
+  <fb:login-button perms="publish_stream,user_birthday">Log In</fb:login-button>
+
+:javascript
+  $(".box").css("display", "none");
+
+  FB.init({appId: '114653015261512', status: true, cookie: true, xfbml: true});
+  FB.Event.subscribe('auth.sessionChange', function(response) {
+    if (response.session) {
+      $("#logged_in").css("display", "block");
+      alert("User just logged in!");
+    } else {
+      $("#unknown").css("display", "block");
+      alert("User logged out!");
+    }
+  });
+  FB.getLoginStatus(function(response) {
+    if (response.session) {
+      $("#logged_in").css("display", "block");
+      alert("User already logged in.");
+    } else {
+      $("#unknown").css("display", "block");
+      alert("Unknown user!");
+    }
+  });
