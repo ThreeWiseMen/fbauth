@@ -43,22 +43,4 @@ ActionController::Routing::Routes.draw do |map|
   # map.connect ':controller/:action/:id.:format'
   
   map.root :controller => :auth, :action => :welcome
-=======
-  map.root :controller => "public"
-
-  map.registration_form 'registration_form', :controller => :public, :action => :registration_form
-  map.register 'register', :controller => :public, :action => :register
-  map.members 'members', :controller => :members, :action => :index
-  map.resources :people do |person|
-    person.resources :memberships do |membership|
-      membership.recalculate 'recalculate', :controller => :memberships, :action => :recalculate
-      membership.mark_paid 'mark_paid', :controller => :memberships, :action => :mark_paid
-    end
-  end
-
-  map.login '/login', :controller => :public, :action => :login
-  map.logoff '/logoff', :controller => :public, :action => :logoff
-
-  map.connect '/:controller/:action'
->>>>>>> heroku/master
 end
