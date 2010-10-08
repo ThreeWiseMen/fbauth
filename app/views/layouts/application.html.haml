@@ -1,0 +1,36 @@
+<<<<<<< HEAD
+!!! Strict
+%html
+  %head
+    %title Facebook Authentication Test
+  %body
+    %h1 Facebook Authentication Test
+    = yield
+=======
+!!!
+%html
+  %head
+    %title Xpressions.org - Private Member Area
+    = stylesheet_link_tag "application"
+    = stylesheet_link_tag "xpr-theme/jquery-ui-1.8.2.custom"
+    = javascript_include_tag "jquery-1.4.2.min"
+    = javascript_include_tag "jquery-ui-1.8.2.custom.min"
+    = javascript_include_tag "application"
+  %body
+
+    %h1.banner Xpressions.org
+
+    - if @user
+      %ol.menu
+        %li= link_to 'Xpressions.org Member Home', members_path
+        %li= link_to 'Photo Books', '#'
+        %li= link_to 'Friendly Places', '#'
+        %li= link_to 'Newsletter Archives', '#'
+        %li= link_to 'The Library', :controller => :library
+        - if @user.is_executive?
+          %li= link_to 'Membership List', people_path
+        %li= link_to 'Log Out', logoff_path
+
+    = yield
+
+>>>>>>> heroku/master

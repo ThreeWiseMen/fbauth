@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+<<<<<<< HEAD
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -38,6 +39,26 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  # map.connect ':controller/:action/:id'
+  # map.connect ':controller/:action/:id.:format'
+  
+  map.root :controller => :auth, :action => :welcome
+=======
+  map.root :controller => "public"
+
+  map.registration_form 'registration_form', :controller => :public, :action => :registration_form
+  map.register 'register', :controller => :public, :action => :register
+  map.members 'members', :controller => :members, :action => :index
+  map.resources :people do |person|
+    person.resources :memberships do |membership|
+      membership.recalculate 'recalculate', :controller => :memberships, :action => :recalculate
+      membership.mark_paid 'mark_paid', :controller => :memberships, :action => :mark_paid
+    end
+  end
+
+  map.login '/login', :controller => :public, :action => :login
+  map.logoff '/logoff', :controller => :public, :action => :logoff
+
+  map.connect '/:controller/:action'
+>>>>>>> heroku/master
 end
