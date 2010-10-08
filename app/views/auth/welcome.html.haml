@@ -8,28 +8,31 @@
   <fb:login-button perms="publish_stream,user_birthday">Log In</fb:login-button>
 
 :javascript
-  $(".box").css("display", "none");
+  function clear() {
+    $(".box").css("background-color", "#fff");
+  }
+  function highlight(element) {
+    clear()
+    $(element).css("background-color", "#fc0");
+  }
+  clear();
 
   FB.init({appId: '114653015261512', status: true, cookie: true, xfbml: true});
   FB.Event.subscribe('auth.sessionChange', function(response) {
     if (response.session) {
-      $(".box").css("display", "none");
-      $("#logged_in").css("display", "block");
+      clear(); highlight("#logged_in");
       alert("User just logged in!");
     } else {
-      $(".box").css("display", "none");
-      $("#unknown").css("display", "block");
+      clear(); highlight("#unknown");
       alert("User logged out!");
     }
   });
   FB.getLoginStatus(function(response) {
     if (response.session) {
-      $(".box").css("display", "none");
-      $("#logged_in").css("display", "block");
+      clear(); highlight("#logged_in");
       alert("User already logged in.");
     } else {
-      $(".box").css("display", "none");
-      $("#unknown").css("display", "block");
+      clear(); highlight("#unknown");
       alert("Unknown user!");
     }
   });
