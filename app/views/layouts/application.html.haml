@@ -11,9 +11,15 @@
       FB.init({appId: '114653015261512', status: true, cookie: true, xfbml: true});
       FB.Event.subscribe('auth.sessionChange', function(response) {
         if (response.session) {
-          alert("User logged in!");
+          alert("User just logged in!");
         } else {
-          alert("No session!");
+          alert("User logged out!");
         }
       });
-          
+      FB.getLoginStatus(function(response) {
+        if (response.session) {
+          alert("User already logged in.");
+        } else {
+          alert("Unknown user!");
+        }
+      });
