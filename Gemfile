@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-# A sample Gemfile
-source "http://rubygems.org"
-
-gem "rails", "2.3.9"
-gem "haml"
-gem "sqlite3-ruby"
-
-=======
 source :rubygems
 
 gem 'heroku'
@@ -21,4 +12,3 @@ group :test do
   gem 'rspec-rails'
   gem 'cucumber'
 end
->>>>>>> heroku/master
