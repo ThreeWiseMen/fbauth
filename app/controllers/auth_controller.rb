@@ -9,12 +9,6 @@ class AuthController < ApplicationController
 
 private
 
-  def get_access_token
-    parms = parse_parms
-    parms = parse_cookie if parms.nil?
-    parms[:access_token] unless parms.nil?
-  end
-
   def parse_parms
     unless params[:session].nil?
       parms = JSON.parse(params[:session])
@@ -32,6 +26,12 @@ private
       end
     end
     parms
+  end
+
+  def get_access_token
+    parms = parse_parms
+    parms = parse_cookie if parms.nil?
+    parms[:access_token] unless parms.nil?
   end
 
 end
