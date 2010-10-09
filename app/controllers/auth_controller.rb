@@ -13,7 +13,7 @@ private
 
   def parse_parms
     unless params[:session].nil?
-      parms = JSON.decode(params[:session])
+      parms = JSON.parse(params[:session])
     end
     parms
   end
