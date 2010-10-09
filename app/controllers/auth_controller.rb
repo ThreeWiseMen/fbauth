@@ -1,7 +1,7 @@
 class AuthController < ApplicationController
 
   def welcome
-    @access_token = parse_cookie(cookies["fbs_114653015261512"])
+    @access_token = parse_cookie(cookies["fbs_114653015261512"])['access_token']
   end
 
 private
