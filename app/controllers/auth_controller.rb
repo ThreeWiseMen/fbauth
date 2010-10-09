@@ -7,7 +7,8 @@ class AuthController < ApplicationController
 private
 
   def get_access_token
-    parms = parse_parms || parse_cookie
+    parms = parse_parms
+    parms = parse_cookie if parms.nil?
     parms[:access_token]
   end
 
