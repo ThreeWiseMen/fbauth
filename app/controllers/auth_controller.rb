@@ -12,7 +12,7 @@ private
   def get_access_token
     parms = parse_parms
     parms = parse_cookie if parms.nil?
-    parms[:access_token]
+    parms[:access_token] unless parms.nil?
   end
 
   def parse_parms
