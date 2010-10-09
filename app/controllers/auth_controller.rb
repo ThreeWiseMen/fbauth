@@ -1,13 +1,25 @@
 class AuthController < ApplicationController
 
   def welcome
-    fb_parms = parse_cookie(cookies["fbs_114653015261512"])
-    @access_token = fb_parms['access_token'] unless fb_parms.nil?
+    @access_token = get_access_token
   end
 
 private
 
-  def parse_cookie(cookie)
+  def get_access_token
+    parms = parse_parms || parse_cookie
+    parms[:access_token]
+  end
+
+  def parse_parms
+    unless params[:session].nil?
+      parms = JSON.decode(params[:session])
+    end
+    parms
+  end
+
+  def parse_cookie
+    cookie = cookies["fbs_114653015261512"]
     unless cookie.nil?
       parms = {}
       cookie.split("&").each do |pair|
