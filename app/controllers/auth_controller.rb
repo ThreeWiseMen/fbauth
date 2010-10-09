@@ -1,7 +1,10 @@
 class AuthController < ApplicationController
 
   def welcome
-    @access_token = get_access_token
+    #@access_token = get_access_token
+
+    @parms = parse_parms
+    @cookie = parse_cookie
   end
 
 private
