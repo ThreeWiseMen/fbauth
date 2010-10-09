@@ -3,7 +3,7 @@
 %ul
   %li Access token: #{@access_token}
   %li Cookie: #{cookies["fbs_114653015261512"]}
-  %li Params: #{params.inspect}
+  %li Params: #{params[:session].inspect}
 
 #logged_in.box
   %p You are authenticated and ready to start using the app!
