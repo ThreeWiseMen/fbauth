@@ -1,6 +1,8 @@
 %h2 Welcome Page
 
-%h3 Access Cookie: #{@access_token}
+%ul
+  %li Access token: #{@access_token}
+  %li Cookie: #{cookies["fbs_114653015261512"]}
 
 #logged_in.box
   %p You are authenticated and ready to start using the app!
