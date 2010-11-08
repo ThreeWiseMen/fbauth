@@ -17,6 +17,7 @@ private
     parms = get_parms
     unless parms.nil?
       data = {}
+      puts "-----------------    #{parms['expires']}"
       data[:access_token] = parms['access_token'] if parms.has_key? 'access_token'
       data[:expires] = Time.at(parms['expires']) if parms.has_key? 'expires'
       data[:uid] = parms['uid'] if parms.has_key? 'uid'
