@@ -17,12 +17,11 @@ private
     parms = get_parms
     unless parms.nil?
       data = {}
-      puts "-----------------    #{parms['expires']}"
       data[:access_token] = parms['access_token'] if parms.has_key? 'access_token'
       data[:expires] = Time.at(parms['expires'].to_i) if parms.has_key? 'expires'
       data[:uid] = parms['uid'] if parms.has_key? 'uid'
-      puts "#################    #{data.has_key? :expires} - #{data[:expires]}"
       data[:is_expired] = data[:expires] < Time.now if data.has_key? :expires
+      data[:user] = FacebookGraph.call(data[:uid]) if parms.has_key? 'uid' 
     end
     data
   end

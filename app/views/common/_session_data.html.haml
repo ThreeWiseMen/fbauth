@@ -8,7 +8,7 @@
     - @facebook_auth_data.keys.each do |key|
       %tr
         %td= key
-        %td= @facebook_auth_data[key]
+        %td= @facebook_auth_data[key].inspect
   - else
     %tr
       %td{:colspan => 2, :align => 'center'} No Session Data
