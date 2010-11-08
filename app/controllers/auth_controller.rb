@@ -1,17 +1,16 @@
 class AuthController < ApplicationController
   include FacebookAuthController
 
-  before_filter :setup_access_token
+  before_filter :setup_facebook_auth
 
   def welcome
     @parms = parse_parms
     @cookie = parse_cookie
-    @user = facebook_user @access_token
+    @user = facebook_user @facebook_auth_data[:access_token]
   end
 
-  def setup_access_token
-    @access_token = get_access_token
-    @access_token_expiry = get_access_token_expiry
+  def setup_facebook_auth
+    @facebook_auth_data = facebook_auth_data
   end
 
 end

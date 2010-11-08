@@ -1,15 +1,23 @@
 module FacebookAuthController
 
   def get_access_token
-    get_parm 'access_token'
-  end
-
-  def get_access_token_expiry
-    expiry = get_parm 'expires'
-    Time.at expiry unless expiry.nil?
+    facebook_auth_data[:access_token]
   end
 
 private
+
+  def facebook_auth_data
+    parms = get_parms
+    unless parms.nil?
+      data = {
+        :access_token => parms['access_token'],
+        :expires => Time.at(parms['expires']),
+        :uid => parms['uid']
+      }
+      data[:is_expired] = data[:expires] >= Time.now
+    end
+    data
+  end
 
   def get_parm key
     parms = get_parms
