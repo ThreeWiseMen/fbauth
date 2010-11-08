@@ -23,7 +23,7 @@
   }
   clear();
 
-  FB.init({appId: '114653015261512', status: true, cookie: true, xfbml: true});
+  FB.init({appId: '#{FacebookConfig['app_id']}', status: true, cookie: true, xfbml: true});
   FB.Event.subscribe('auth.sessionChange', function(response) {
     if (response.session) {
       clear(); highlight("#logged_in");
