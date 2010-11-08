@@ -1,7 +1,7 @@
 source :rubygems
 
 gem 'heroku'
-gem 'rails', '2.3.9'
+gem 'rails', '2.3.10'
 gem 'haml'
 gem 'sqlite3-ruby'
 gem 'fastercsv'
