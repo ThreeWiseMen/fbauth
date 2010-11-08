@@ -2,7 +2,7 @@
 
 %ul
   %li Access token: #{@access_token}
-  %li Access token expiry: #{@access_token_expiry}
+  %li Access token expiry: #{@access_token_expiry} (#{@access_token_expiry.strftime('%Y-%m-%d %H:%M:%S')})
   %li Cookie: #{@cookie}
   %li Params: #{@parms}
   %li User: #{@user.inspect}
