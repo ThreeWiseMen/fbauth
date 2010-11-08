@@ -14,7 +14,7 @@ private
         :expires => Time.at(parms['expires']),
         :uid => parms['uid']
       }
-      data[:is_expired] = data[:expires] >= Time.now
+      data[:is_expired] = data[:expires] < Time.now
     end
     data
   end
