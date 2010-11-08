@@ -1,0 +1,14 @@
+%h2 Session Data
+
+%table
+  %tr
+    %th Key
+    %th Value
+  - unless @facebook_auth_data.nil?
+    - @facebook_auth_data.keys.sort.each do |key|
+      %tr
+        %td= key
+        %td= @facebook_auth_data[key]
+  - else
+    %tr
+      %td{:colspan => 2, :align => 'center'} No Session Data

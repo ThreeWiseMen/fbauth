@@ -7,6 +7,7 @@
   %body
     <div id="fb-root"></div>
     %h1 Facebook Authentication Test
+    = render :partial => '/common/session_data'
     = yield
     :javascript
       FB.Canvas.setAutoResize();
