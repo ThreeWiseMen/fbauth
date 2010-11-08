@@ -9,6 +9,11 @@ class AuthController < ApplicationController
     @user = facebook_user @facebook_auth_data[:access_token]
   end
 
+  def authenticate
+  end
+
+private
+
   def setup_facebook_auth
     @facebook_auth_data = facebook_auth_data
   end

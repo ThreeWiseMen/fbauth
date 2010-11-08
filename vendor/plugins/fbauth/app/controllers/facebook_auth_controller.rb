@@ -4,6 +4,13 @@ module FacebookAuthController
     facebook_auth_data[:access_token]
   end
 
+  def require_facebook_auth
+    @facebook_auth_data = facebook_auth_data
+    if @facebook_auth_data.nil?
+      redirect_to authentication_url
+    end
+  end
+
 private
 
   def facebook_auth_data

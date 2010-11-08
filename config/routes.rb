@@ -42,4 +42,8 @@ ActionController::Routing::Routes.draw do |map|
   # map.connect ':controller/:action/:id.:format'
   
   map.root :controller => :auth, :action => :welcome
+
+  map.authentication '/fbauth', :controller => :auth, :action => :authenticate
+  map.page1 '/page1', :controller => :sample, :action => :page1
+  map.page2 '/page2', :controller => :sample, :action => :page2
 end
