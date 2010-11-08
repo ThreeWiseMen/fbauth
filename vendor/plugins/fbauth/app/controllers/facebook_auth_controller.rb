@@ -5,7 +5,7 @@ module FacebookAuthController
   end
 
   def get_access_token_expiry
-    expiry = get_parm 'expiry'
+    expiry = get_parm 'expires'
     Time.at expiry unless expiry.nil?
   end
 
