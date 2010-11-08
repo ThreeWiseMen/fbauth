@@ -21,7 +21,11 @@ private
       data[:expires] = Time.at(parms['expires'].to_i) if parms.has_key? 'expires'
       data[:uid] = parms['uid'] if parms.has_key? 'uid'
       data[:is_expired] = data[:expires] < Time.now if data.has_key? :expires
-      data[:user] = FacebookGraph.call(data[:uid], data[:access_token]) if parms.has_key? 'uid' and parms.has_key? 'access_token'
+      data[:user] = FacebookGraph.call(data[:uid], data[:access_token]) if parms.has_key? 'uid' && parms.has_key? 'access_token'
+      if data[:user].has_key? 'error'
+        puts "Invalid access token, #{data[:user]['error'].inspect}"
+        data = {}
+      end
     end
     data
   end
