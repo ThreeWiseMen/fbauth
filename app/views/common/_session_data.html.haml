@@ -5,7 +5,7 @@
     %th Key
     %th Value
   - unless @facebook_auth_data.nil?
-    - @facebook_auth_data.keys.sort.each do |key|
+    - @facebook_auth_data.keys.each do |key|
       %tr
         %td= key
         %td= @facebook_auth_data[key]
