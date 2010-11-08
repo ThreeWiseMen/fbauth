@@ -18,7 +18,7 @@ private
     unless parms.nil?
       data = {}
       data[:access_token] = parms['access_token'] if parms.has_key? 'access_token'
-      data[:expires] = parms['expires'] if parms.has_key? 'expires'
+      data[:expires] = Time.at(parms['expires']) if parms.has_key? 'expires'
       data[:uid] = parms['uid'] if parms.has_key? 'uid'
       puts "#################    #{data.has_key? :expires} - #{data[:expires]}"
       data[:is_expired] = data[:expires] < Time.now if data.has_key? :expires
