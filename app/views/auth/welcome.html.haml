@@ -1,6 +1,7 @@
 %h2 Welcome Page
 
 %ul
+  %li Facebook Auth Data: #{@facebook_auth_data.inspect}
   %li Access token: #{@access_token}
   %li Access token expiry: #{@access_token_expiry} (#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} #{@access_token_expiry.strftime('%Y-%m-%d %H:%M:%S')})
   %li Cookie: #{@cookie}
