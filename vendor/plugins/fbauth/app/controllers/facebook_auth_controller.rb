@@ -1,12 +1,25 @@
 module FacebookAuthController
 
   def get_access_token
-    parms = parse_parms
-    parms = parse_cookie if parms.nil?
-    parms['access_token'] unless parms.nil?
+    get_parm 'access_token'
+  end
+
+  def get_access_token_expiry
+    expiry = get_parm 'expiry'
+    Time.at expiry unless expiry.nil?
   end
 
 private
+
+  def get_parm key
+    parms = get_parms
+    parms[key] unless parms.nil?
+  end
+
+  def get_parms
+    parms = parse_parms
+    parms = parse_cookie if parms.nil?
+  end
 
   def parse_parms
     unless params[:session].nil?

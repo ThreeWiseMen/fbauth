@@ -11,6 +11,7 @@ class AuthController < ApplicationController
 
   def setup_access_token
     @access_token = get_access_token
+    @access_token_expiry = get_access_token_expiry
   end
 
 end
