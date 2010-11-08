@@ -13,12 +13,14 @@ private
 
   def get_parm key
     parms = get_parms
-    parms[key] unless parms.nil?
+    value = parms[key] unless parms.nil?
+    value
   end
 
   def get_parms
     parms = parse_parms
     parms = parse_cookie if parms.nil?
+    parms
   end
 
   def parse_parms
