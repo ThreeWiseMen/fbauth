@@ -6,7 +6,6 @@
     %script{ :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", :type => "text/javascript" }
   %body
     <div id="fb-root"></div>
-    %h1 Facebook Authentication Test
     - unless @facebook_auth_data.nil?
       = render :partial => '/common/session_data'
       %ul
