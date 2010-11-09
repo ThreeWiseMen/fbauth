@@ -22,4 +22,12 @@
           alert("User logged out!");
         }
       });
+      FB.getLoginStatus(function(response) {
+        alert(response.status);
+        if (response.session) {
+          alert("User already logged in.");
+        } else {
+          alert("Unknown user!");
+        }
+      });
       
