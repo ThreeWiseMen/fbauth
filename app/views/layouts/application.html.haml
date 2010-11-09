@@ -14,11 +14,4 @@
     :javascript
       FB.init({appId: '#{FacebookConfig['app_id']}', status: true, cookie: true, xfbml: true});
       FB.Canvas.setAutoResize();
-      FB.Event.subscribe('auth.sessionChange', function(response) {
-        if (response.session) {
-          alert("User just logged in!");
-        } else {
-          alert("User logged out!");
-        }
-      });
     = yield

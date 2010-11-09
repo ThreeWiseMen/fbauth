@@ -27,3 +27,8 @@
       $('.add').show();
     }
   });
+  FB.Event.subscribe('auth.sessionChange', function(response) {
+    if (response.session) {
+      window.top.location.href = '#{FacebookConfig['app_url']}';
+    }
+  });
