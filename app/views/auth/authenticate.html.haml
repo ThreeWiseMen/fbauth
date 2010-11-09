@@ -1,13 +1,11 @@
-%h1 Authentication Page
-
-%p This is where the user must authenticate or add the app.
+%h1 Authentication and Authorization
 
 %p.login
   Please log in to Facebook.
   <fb:login-button>Log In</fb:login-button>
 
 %p.ready
-  App is ready to use. Why are you here?
+  Please wait...
 
 %p.add
   Please add this app
@@ -22,7 +20,6 @@
   FB.getLoginStatus(function(response) {
     if (response.status == 'connected') {
       $('.ready').show();
-      alert("Ready to use");
       window.top.location.href = '#{FacebookConfig['app_url']}';
     } else if (response.status == 'unknown') {
       $('.login').show();
