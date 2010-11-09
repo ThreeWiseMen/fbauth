@@ -51,6 +51,7 @@ private
 
   def parse_cookie
     cookie = cookies["fbs_#{FacebookConfig['app_id']}"]
+    logger.warn "###### Cookie found - #{cookie.inspect}"
     unless cookie.nil?
       parms = {}
       cookie.split("&").each do |pair|
