@@ -1,3 +1,28 @@
 %h1 Authentication Page
 
 %p This is where the user must authenticate or add the app.
+
+%p.login
+  Please log in to Facebook.
+
+%p.ready
+  App is ready to use. Why are you here?
+
+%p.add
+  Please add this app
+
+:javascript
+  $(document).ready(function() {
+    $('.login').hide();
+    $('.ready').hide();
+    $('.add').hide();
+  });
+  FB.getLoginStatus(function(response) {
+    if (response.status == 'connected') {
+      $('.ready').show();
+    } else if (response.status == 'unknown') {
+      $('.login').show();
+    } else if (response.status == 'notConnected') {
+      $('.add').show();
+    }
+  });

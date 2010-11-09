@@ -36,6 +36,10 @@ Here are the scenarios we'd like to handle:
     - do we get a new one?
     - are we expected to stop functioning and redirect to a FB login?
   - how do we tell the difference between someone not logged into FB and someone who hasn't added our app?
+    - FB.getLoginStatus
+      - "connected" - user has app, and is authenticated
+      - "unknown" - user not logged in
+      - "notConnected" - user has not added app
 
 == Screens Required to Implement
 
