@@ -1,11 +1,15 @@
 development:
   app_id: 114653015261512
+  app_url: "http://apps.facebook.com/svetzal-auth/"
 
 test:
   app_id: 114653015261512
+  app_url: "http://apps.facebook.com/svetzal-auth/"
 
 cucumber:
   app_id: 114653015261512
+  app_url: "http://apps.facebook.com/svetzal-auth/"
 
 production:
   app_id: 114653015261512
+  app_url: "http://apps.facebook.com/svetzal-auth/"

@@ -23,7 +23,7 @@
     if (response.status == 'connected') {
       $('.ready').show();
       alert("Ready to use");
-      window.top.location.href = '#{root_path}';
+      window.top.location.href = '#{FacebookConfig['app_url']}';
     } else if (response.status == 'unknown') {
       $('.login').show();
       alert("Show login");
