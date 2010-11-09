@@ -20,9 +20,12 @@
   FB.getLoginStatus(function(response) {
     if (response.status == 'connected') {
       $('.ready').show();
+      alert("Ready to use");
     } else if (response.status == 'unknown') {
       $('.login').show();
+      alert("Show login");
     } else if (response.status == 'notConnected') {
       $('.add').show();
+      alert("Show add app");
     }
   });
