@@ -23,6 +23,7 @@
     if (response.status == 'connected') {
       $('.ready').show();
       alert("Ready to use");
+      window.top.location.href = '#{root_path}';
     } else if (response.status == 'unknown') {
       $('.login').show();
       alert("Show login");
