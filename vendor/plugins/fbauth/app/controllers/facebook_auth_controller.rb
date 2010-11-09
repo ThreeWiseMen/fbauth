@@ -44,6 +44,7 @@ private
 
   def parse_parms
     unless params[:session].nil?
+      logger.warn "###### URL parms found - #{params[:session].inspect}"
       parms = JSON.parse(params[:session])
     end
     parms
