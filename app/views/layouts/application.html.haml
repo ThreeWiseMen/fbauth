@@ -7,10 +7,11 @@
   %body
     <div id="fb-root"></div>
     %h1 Facebook Authentication Test
-    = render :partial => '/common/session_data'
-    %ul
-      %li= link_to 'Page 1', page1_path
-      %li= link_to 'Page 2', page2_path
+    - unless @facebook_auth_data.nil?
+      = render :partial => '/common/session_data'
+      %ul
+        %li= link_to 'Page 1', page1_path
+        %li= link_to 'Page 2', page2_path
     :javascript
       FB.init({appId: '#{FacebookConfig['app_id']}', status: true, cookie: true, xfbml: true});
       FB.Canvas.setAutoResize();
