@@ -8,6 +8,9 @@
     <div id="fb-root"></div>
     %h1 Facebook Authentication Test
     = render :partial => '/common/session_data'
+    %ul
+      %li= link_to 'Page 1', page1_path
+      %li= link_to 'Page 2', page2_path
     = yield
     :javascript
       FB.Canvas.setAutoResize();
