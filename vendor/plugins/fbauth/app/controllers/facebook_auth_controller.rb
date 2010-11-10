@@ -16,21 +16,29 @@ private
   def facebook_auth
     # If we have valid auth in session, use it
     data = parse_session
-    unless data.nil?
-      auth = FacebookAuth.create(data)
-      return auth if auth.validate
-    end
+    auth = validate_and_save(data)
+    return auth unless auth.nil?
+    # Clear session variable if its data was bad
+    session[:fbauth] = nil
+
     # If no valid session auth, try the cookie from the JS SDK
     data = parse_cookie
-    unless data.nil?
-      auth = FacebookAuth.create(data)
-      return auth if auth.validate
-    end
+    auth = validate_and_save(data)
+    return auth unless auth.nil?
+
     # If no valid session or cookie auth, last chance try the URL
     data = parse_parms
-    unless data.nil?
-      auth = FacebookAuth.create(data)
-      return auth if auth.validate
+    auth = validate_and_save(data)
+    return auth
+  end
+
+  def validate_and_save data
+    auth = FacebookAuth.create(data)
+    if auth.validate
+      session[:fbauth] = auth.session_data
+      return auth
+    else
+      return nil
     end
   end
 
