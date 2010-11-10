@@ -38,4 +38,12 @@ class FacebookAuth
     return valid
   end
 
+  def session_data
+    return {
+      'access_token' => self.access_token,
+      'uid' => self.uid,
+      'expires' => self.expires.to_i
+    }.to_yaml
+  end
+
 end
