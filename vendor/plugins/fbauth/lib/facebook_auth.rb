@@ -47,3 +47,26 @@ class FacebookAuth
   end
 
 end
+
+# User data typically looks like this:
+#
+# {
+#   "id"=>"849395216",
+#   "name"=>"Steven Vetzal",
+#   "first_name"=>"Steven"
+#   "last_name"=>"Vetzal",
+#   "gender"=>"male",
+#   "verified"=>true,
+#   "link"=>"http://www.facebook.com/svetzal",
+#   "timezone"=>-5,
+#   "locale"=>"en_US",
+#   "location"=>{
+#     "name"=>"Oshawa, Ontario",
+#     "id"=>"114418101908145"
+#   },
+#   "hometown"=>{
+#     "name"=>"Oshawa, Ontario",
+#     "id"=>"114418101908145"
+#   },
+#   "updated_time"=>"2010-04-28T12:57:20+0000",
+# }
