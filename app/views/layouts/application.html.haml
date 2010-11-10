@@ -11,7 +11,7 @@
       %ul
         %li= link_to 'Page 1', page1_path
         %li= link_to 'Page 2', page2_path
+    = fbauth_init_javascript
     :javascript
-      FB.init({appId: '#{FacebookConfig['app_id']}', status: true, cookie: true, xfbml: true});
       FB.Canvas.setAutoResize();
     = yield
