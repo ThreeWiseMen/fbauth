@@ -4,11 +4,19 @@
   %tr
     %th Key
     %th Value
-  - unless @facebook_auth_data.nil?
-    - @facebook_auth_data.keys.each do |key|
-      %tr
-        %td= key
-        %td= @facebook_auth_data[key].inspect
+  - unless @facebook_auth.nil?
+    %tr
+      %td uid
+      %td= @facebook_auth.uid
+    %tr
+      %td access_token
+      %td= @facebook_auth.access_token
+    %tr
+      %td expires
+      %td= @facebook_auth.expires
+    %tr
+      %td user_data
+      %td= @facebook_auth.user_data.inspect
   - else
     %tr
       %td{:colspan => 2, :align => 'center'} No Session Data

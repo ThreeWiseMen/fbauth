@@ -29,6 +29,7 @@
   });
   FB.Event.subscribe('auth.sessionChange', function(response) {
     if (response.session) {
+      // If we have a session, and it's valid...
       window.top.location.href = '#{FacebookConfig['app_url']}';
     }
   });

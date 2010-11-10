@@ -29,6 +29,13 @@ Here are the scenarios we'd like to handle:
 - handling an OAuth exchange back & forth with Facebook to handle authentication and capture URL parameters back for
   token
 
+== Auth token flow
+
+- check session data
+  - if not empty, verify validity (expiry, look up user)
+  - if empty or validity fails try from url parameters
+  - if empty or validity fails try from cookie
+
 == Questions we need to answer:
 
   - what timezone is the OAuth token expiry value in? (we get it in Epoch, no TZ data, assume San Fran?)
@@ -42,5 +49,3 @@ Here are the scenarios we'd like to handle:
       - "notConnected" - user has not added app
 
 == Screens Required to Implement
-
-- Authentication screen - "Log in to Facebook, or Add This App"

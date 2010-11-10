@@ -1,15 +1,10 @@
 class AuthController < ApplicationController
   include FacebookAuthController
 
+  # Do we even need this when using the JS SDK for auth?
   before_filter :setup_facebook_auth
 
   def authenticate
-  end
-
-private
-
-  def setup_facebook_auth
-    @facebook_auth_data = facebook_auth_data
   end
 
 end
