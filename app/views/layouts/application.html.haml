@@ -6,7 +6,7 @@
     %script{ :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", :type => "text/javascript" }
   %body
     <div id="fb-root"></div>
-    - unless fbauth
+    - unless @facebook_auth
       = render :partial => '/common/session_data'
       %ul
         %li= link_to 'Page 1', page1_path
