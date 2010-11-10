@@ -1,5 +1,5 @@
 class SampleController < ApplicationController
-  include FacebookAuthController
+  include FacebookAuthFunctions
 
   before_filter :require_facebook_auth
 

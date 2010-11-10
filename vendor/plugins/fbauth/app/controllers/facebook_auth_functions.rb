@@ -1,4 +1,4 @@
-module FacebookAuthController
+module FacebookAuthFunctions
 
   def setup_facebook_auth
     @facebook_auth ||= facebook_auth
