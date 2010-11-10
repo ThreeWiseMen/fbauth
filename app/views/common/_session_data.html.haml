@@ -4,7 +4,7 @@
   %tr
     %th Key
     %th Value
-  - unless fbauth.nil?
+  - if fbauth
     %tr
       %td uid
       %td= fbauth.uid
