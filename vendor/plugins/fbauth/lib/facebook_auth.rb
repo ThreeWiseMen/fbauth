@@ -3,10 +3,12 @@ class FacebookAuth
   attr_accessor :access_token, :expires, :uid
   attr_accessor :user_data, :validation_error
 
-  def create parms
-    self.access_token = parms['access_token']
-    self.uid = parms['uid']
-    self.expires_epoch = parms['expires'].to_i if parms.has_key? 'expires'
+  def self.create parms
+    auth = self.new
+    auth.access_token = parms['access_token']
+    auth.uid = parms['uid']
+    auth.expires_epoch = parms['expires'].to_i if parms.has_key? 'expires'
+    auth
   end
 
   def expires_epoch= epoch
