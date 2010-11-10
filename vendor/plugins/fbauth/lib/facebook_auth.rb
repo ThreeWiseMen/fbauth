@@ -43,7 +43,7 @@ class FacebookAuth
       'access_token' => self.access_token,
       'uid' => self.uid,
       'expires' => self.expires.to_i
-    }.to_yaml
+    }.to_json
   end
 
 end

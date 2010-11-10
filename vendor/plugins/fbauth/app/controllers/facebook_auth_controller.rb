@@ -44,7 +44,7 @@ private
 
   def parse_session
     unless session[:fbauth].nil?
-      parms = YAML.parse(session[:fbauth])
+      parms = JSON.parse(session[:fbauth])
     end
     parms
   end
