@@ -1,0 +1,17 @@
+:javascript
+  $(document).ready(function() {
+    $('#{login_el}').hide();
+    $('#{add_el}').hide();
+    $('#{ready_el}').hide();
+  });
+  FB.getLoginStatus(function(response) {
+    if (response.status == 'connected') {
+      $('#{ready_el}').show();
+      window.top.location.href = '#{FacebookConfig['app_url']}';
+    } else if (response.status == 'unknown') {
+      $('#{login_el}').show();
+    } else if (response.status == 'notConnected') {
+      $('#{add_el}').show();
+    }
+  });
+
