@@ -7,7 +7,7 @@ class FacebookAuth
     auth = self.new
     auth.access_token = parms['access_token']
     auth.uid = parms['uid']
-    auth.expires_epoch = parms['expires'].to_i if parms.has_key? 'expires'
+    auth.expires_epoch = parms['expires'].to_i unless parms['expires'].nil?
     auth
   end
 
