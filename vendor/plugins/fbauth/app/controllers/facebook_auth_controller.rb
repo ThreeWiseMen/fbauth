@@ -44,7 +44,11 @@ private
 
   def parse_session
     unless session[:fbauth].nil?
-      parms = JSON.parse(session[:fbauth])
+      begin
+        parms = JSON.parse(session[:fbauth])
+      rescue => e
+        session[:fbauth] = nil
+      end
     end
     parms
   end
