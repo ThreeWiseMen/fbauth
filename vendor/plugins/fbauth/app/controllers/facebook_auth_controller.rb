@@ -1,8 +1,8 @@
 module FacebookAuthController
 
-  #def setup_facebook_auth
-  #  @facebook_auth ||= facebook_auth
-  #end
+  def setup_facebook_auth
+    @facebook_auth ||= facebook_auth
+  end
 
   def require_facebook_auth
     setup_facebook_auth
