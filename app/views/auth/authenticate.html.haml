@@ -12,25 +12,3 @@
   Please wait...
 
 = fbauth_javascript(:login => 'login', :add => 'add', :ready => 'ready')
-:javascript
-  $(document).ready(function() {
-    $('.login').hide();
-    $('.ready').hide();
-    $('.add').hide();
-  });
-  FB.getLoginStatus(function(response) {
-    if (response.status == 'connected') {
-      $('.ready').show();
-      window.top.location.href = '#{FacebookConfig['app_url']}';
-    } else if (response.status == 'unknown') {
-      $('.login').show();
-    } else if (response.status == 'notConnected') {
-      $('.add').show();
-    }
-  });
-  FB.Event.subscribe('auth.sessionChange', function(response) {
-    if (response.session) {
-      // If we have a session, and it's valid...
-      window.top.location.href = '#{FacebookConfig['app_url']}';
-    }
-  });
