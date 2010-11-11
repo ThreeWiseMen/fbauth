@@ -8,7 +8,7 @@ module FbauthHelper
   end
 
   def fbauth_init_javascript options={}
-    render :partial => '/fbauth/init.html.haml', :locals => { options }
+    render :partial => '/fbauth/init.html.haml', :locals => options
   end
 
   def fbauth
