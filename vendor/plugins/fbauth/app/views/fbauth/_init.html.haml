@@ -1,2 +1,4 @@
 :javascript
   FB.init({appId: '#{FacebookConfig['app_id']}', status: true, cookie: true, xfbml: true});
+  - if auto_resize
+    FB.Canvas.setAutoResize();

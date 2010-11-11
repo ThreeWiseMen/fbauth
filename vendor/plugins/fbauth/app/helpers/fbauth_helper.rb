@@ -7,8 +7,8 @@ module FbauthHelper
     render :partial => '/fbauth/login.html.haml', :locals => { :login_el => login_el, :add_el => add_el, :ready_el => ready_el }
   end
 
-  def fbauth_init_javascript
-    render :partial => '/fbauth/init.html.haml'
+  def fbauth_init_javascript options={}
+    render :partial => '/fbauth/init.html.haml', :locals => { options }
   end
 
   def fbauth

@@ -11,7 +11,5 @@
       %ul
         %li= link_to 'Page 1', page1_path
         %li= link_to 'Page 2', page2_path
-    = fbauth_init_javascript
-    :javascript
-      FB.Canvas.setAutoResize();
+    = fbauth_init_javascript(:auto_resize => true)
     = yield
