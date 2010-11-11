@@ -1,4 +1,7 @@
-:javascript
-  FB.init({appId: '#{FacebookConfig['app_id']}', status: true, cookie: true, xfbml: true});
-  - if auto_resize
+- if auto_resize
+  :javascript
+    FB.init({appId: '#{FacebookConfig['app_id']}', status: true, cookie: true, xfbml: true});
     FB.Canvas.setAutoResize();
+- else
+  :javascript
+    FB.init({appId: '#{FacebookConfig['app_id']}', status: true, cookie: true, xfbml: true});
