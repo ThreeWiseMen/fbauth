@@ -13,4 +13,8 @@ class FacebookConfig
     file = File.join(::RAILS_ROOT, 'config', 'facebook.yml')
     YAML.parse(ERB.new(IO.read(file)).result)
   end
+
+  def self.app_url
+    "http://apps.facebook.com/#{self['app_context']}/"
+  end
 end

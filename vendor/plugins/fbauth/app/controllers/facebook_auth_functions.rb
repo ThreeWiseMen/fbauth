@@ -7,7 +7,7 @@ module FacebookAuthFunctions
   def require_facebook_auth
     setup_facebook_auth
     if @facebook_auth.nil?
-      redirect_to authentication_url
+      redirect_to authentication_url # TODO: Externalize this
     end
   end
 
