@@ -1,3 +1,15 @@
 FBAuth
-------
+======
+
+This gem provides authentication and basic Facebook functions for your Rails application.
+
+The Authentication Challenge
+----------------------------
+
+Facebook is an evolving platform, over the past couple years we've seen a lot of change in how it authenticates users of
+third-party applications.
+
+And as of this writing, authentication with the Javascript SDK remains broken due to the reliance on cross-domain
+cookies, which are simply not supported in mobile Safari, by default on Safari for Windows, and reportedly on the
+Android Webkit based browser.
 
