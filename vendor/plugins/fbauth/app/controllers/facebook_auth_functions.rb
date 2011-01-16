@@ -7,11 +7,15 @@ module FacebookAuthFunctions
   def require_facebook_auth
     setup_facebook_auth
     if @facebook_auth.nil?
-      redirect_to authentication_url # TODO: Externalize this
+      redirect_to build_auth_url
     end
   end
 
 private
+
+  def build_auth_url
+    "#{request.protocol}#{request.host_with_port}#{FacebookConfig['auth_path']}"
+  end
 
   def facebook_auth
     # If we have valid auth in session, use it
