@@ -5,6 +5,9 @@ module FacebookAuthFunctions
   end
 
   def require_facebook_auth
+    # Prep IE so it will take our cookies in a Facebook iFrame
+    response.headers['P3P'] = 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"'
+
     setup_facebook_auth
     if @facebook_auth.nil?
       redirect_to build_auth_url
