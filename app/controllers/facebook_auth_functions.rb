@@ -48,6 +48,7 @@ private
       session[:fbauth] = auth.session_data
       return auth
     else
+      logger.warn("Auth parameters in session were stale / invalid")
       return nil
     end
   end
