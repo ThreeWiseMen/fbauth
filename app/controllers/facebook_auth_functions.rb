@@ -28,13 +28,13 @@ private
     # Clear session variable if its data was bad
     session[:fbauth] = nil
 
-    # If no valid session auth, try the cookie from the JS SDK
-    data = parse_cookie
+    # If no valid session, try the URL params (session, signed_reuest)
+    data = parse_parms
     auth = validate_and_save(data) unless data.nil?
     return auth unless auth.nil?
 
-    # If no valid session or cookie auth, last chance try the URL
-    data = parse_parms
+    # If no valid session auth or params auth, last chance try the JS SDK
+    data = parse_cookie
     auth = validate_and_save(data) unless data.nil?
     return auth
   end
