@@ -61,9 +61,15 @@ private
   end
 
   def parse_parms
-    unless params[:session].nil?
-      logger.warn "###### URL parms found - #{params[:session].inspect}"
+    if params[:session].present?
       parms = JSON.parse(params[:session])
+      logger.warn("Parsed facebook params from session parameter (deprecated)")
+    elsif params[:signed_request].present?
+      sig, b64udata = params[:signed_request].split('.')
+      json = b64udata.tr('+/', '-_').unpack('m')[0]
+      json += "}" unless json =~ /\}$/ # Hack to fix missing } bug
+      parms = JSON.parse(json)
+      logger.warn("Parsed facebook params from signed_request parameter")
     end
     parms
   end
