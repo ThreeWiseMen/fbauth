@@ -67,8 +67,19 @@ private
     elsif params[:signed_request].present?
       sig, b64udata = params[:signed_request].split('.')
       json = b64udata.tr('+/', '-_').unpack('m')[0]
-      json += "}" unless json =~ /\}$/ # Hack to fix missing } bug
-      parms = JSON.parse(json)
+      begin
+        parms = JSON.parse(json)
+      rescue => e
+        begin
+          parms = JSON.parse(json + '"}')
+        rescue => e2
+          begin
+            parms = JSON.parse(json + '}')
+          rescue => e3
+            parms = {}
+          end
+        end
+      end
       logger.warn("Parsed facebook params from signed_request parameter")
     end
     parms
