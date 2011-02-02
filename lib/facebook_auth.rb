@@ -6,14 +6,14 @@ class FacebookAuth
   def self.create parms
     auth = self.new
     # Sense old-style FB auth structure, or new-style
-    if parms['access_token'].present?
+    if parms.has_key?('access_token')
       auth.access_token = parms['access_token']
       auth.uid = parms['uid']
       auth.expires_epoch = parms['expires'].to_i unless parms['expires'].nil?
-    else if parms['oauth_token'].present?
+    elsif parms.has_key?('oauth_token')
       auth.access_token = parms['oauth_token']
       auth.uid = parms['user_id']
-      auth.expires_epoch = parms['expires'].to_i if parms['expirse'].present?
+      auth.expires_epoch = parms['expires'].to_i if parms.has_key?('expires')
     end
     auth
   end
