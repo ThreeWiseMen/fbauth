@@ -69,21 +69,7 @@ private
       parms = JSON.parse(params[:session])
       logger.warn("Parsed facebook params from session parameter (deprecated)")
     elsif params[:signed_request].present?
-      sig, b64udata = params[:signed_request].split('.')
-      json = b64udata.tr('-_', '+/').unpack('m')[0]
-      begin
-        parms = JSON.parse(json)
-      rescue => e
-        begin
-          parms = JSON.parse(json + '"}')
-        rescue => e2
-          begin
-            parms = JSON.parse(json + '}')
-          rescue => e3
-            parms = {}
-          end
-        end
-      end
+      parms = FacebookDecoder.decode(params[:signed_request])
       logger.warn("Parsed facebook params from signed_request parameter")
     end
     parms

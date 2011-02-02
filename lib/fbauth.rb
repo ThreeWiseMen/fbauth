@@ -9,6 +9,7 @@
   end
 end
 
+require 'facebook_decoder.rb'
 require 'facebook_auth.rb'
 require 'facebook_config.rb'
 require 'facebook_graph.rb'
