@@ -36,6 +36,9 @@ private
     # If no valid session auth or params auth, last chance try the JS SDK
     data = parse_cookie
     auth = validate_and_save(data) unless data.nil?
+
+    logger.warn("Unable to parse any security params for request - cold authentication required")
+
     return auth
   end
 
@@ -53,6 +56,7 @@ private
     unless session[:fbauth].nil?
       begin
         parms = JSON.parse(session[:fbauth])
+        logger.warn("Parsed facebook params from existing rails session")
       rescue => e
         session[:fbauth] = nil
       end
@@ -93,6 +97,7 @@ private
         key, value = pair.split("=")
         parms[key] = value
       end
+      logger.warn("Parsed facebook params from cookie")
     end
     parms
   end
