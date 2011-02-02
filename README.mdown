@@ -24,6 +24,7 @@ iFrame Apps
 
 - first page load as an iFrame app inside Facebook, where authentication params are sent in the URL used for your iFrame
   - this is particularly required for mobile Safari and other browsers blocking cross-domain cookies by default
+  - handles the old session parameter, as well as the new signed_request parameter
 
 - loading from the cookie initialized by the JavaScript API
   - works great for browsers supporting cross-domain cookies by default
