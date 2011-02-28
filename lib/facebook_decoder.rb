@@ -1,4 +1,5 @@
 require 'active_support'
+require 'digest/sha2'
 
 class FacebookDecoder
 

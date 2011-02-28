@@ -17,7 +17,12 @@ class FacebookGraph
       http.use_ssl = (uri.scheme == "https")
       req = Net::HTTP::Get.new(uri.path)
       response = http.request(req)
-      json = JSON.parse(response.body)
+      raise "Facebook error response #{response.code} - #{response.body}" unless response.code == '200'
+      begin
+        json = JSON.parse(response.body)
+      rescue => e
+        raise "Error parsing Facebook response: #{response.body}"
+      end
     ensure
       http.finish if http.started?
     end
@@ -37,7 +42,12 @@ class FacebookGraph
         req = Net::HTTP::Post.new(uri.path)
         req.set_form_data(options)
         response = http.request(req)
-        json = JSON.parse(response.body)
+        raise "Facebook error response #{response.code} - #{response.body}" unless response.code == '200'
+        begin
+          json = JSON.parse(response.body)
+        rescue => e
+          raise "Error parsing Facebook response: #{response.body}"
+        end
       ensure
         http.finish if http.started?
       end

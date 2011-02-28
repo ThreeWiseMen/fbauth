@@ -33,15 +33,20 @@ class FacebookAuth
 
   def validate
     valid = false
+    msgs = []
     unless self.uid.nil? || self.access_token.nil?
       self.user_data = FacebookGraph.call(self.uid, self.access_token)
       if self.user_data.has_key? 'error'
-        self.validation_error = self.user_data['error'].inspect
+        msgs << self.user_data['error'].inspect
         self.user_data = nil
       else
         valid = true
       end
+    else
+      msgs << "UID provided is nil" if self.uid.nil?
+      msgs << "access_token provided is nil" if self.access_token.nil?
     end
+    self.validation_error = msgs.join(", ") unless valid
     return valid
   end
 

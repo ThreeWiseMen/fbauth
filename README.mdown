@@ -48,3 +48,7 @@ to these questions yet:
     - do we get a new one?
     - are we expected to stop functioning and redirect to a FB login?
 
+Change Log
+==========
+
+v0.9.9.6 - Raising info-rich exceptions when errors returned from Facebook on graph calls

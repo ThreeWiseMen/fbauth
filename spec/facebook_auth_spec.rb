@@ -25,7 +25,7 @@ describe FacebookAuth, "construction" do
       
       auth.uid.should == @uid
       auth.access_token.should == @access_token
-      auth.expires.to_s.should == "2011-02-02 12:00:00 -0500"
+      auth.expires.strftime('%Y-%m-%d %H:%M:%S').should == "2011-02-02 12:00:00"
     end
   end
 end

@@ -5,7 +5,7 @@ require "rake/gempackagetask"
 spec = Gem::Specification.new do |s|
   s.platform          = Gem::Platform::RUBY
   s.name              = "fbauth"
-  s.version           = "0.9.9.4"
+  s.version           = "0.9.9.7"
   s.author            = "Three Wise Men Inc."
   s.licenses          = "Simplified BSD License"
   s.email             = "info @nospam@ threewisemen.ca"
