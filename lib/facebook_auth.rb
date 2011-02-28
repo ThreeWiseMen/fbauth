@@ -43,7 +43,7 @@ class FacebookAuth
       if self.user_data && self.user_data.has_key?('error')
         msgs << self.user_data['error'].inspect
         self.user_data = nil
-      else
+      elsif self.user_data
         valid = true
       end
     else
