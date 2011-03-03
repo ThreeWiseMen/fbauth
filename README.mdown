@@ -54,7 +54,98 @@ __External (Connect) Apps__
 
 ## Integration with Your Rails App ##
 
-Coming soon...
+Add fbauth to your Gemfile
+
+    gem 'fbauth', '~> 1.0'
+
+Create `config/facebook.yml`
+
+    development:
+      app_id: 'xxxxxxxxxxxxx'
+      app_context: 'my-app-dev'
+      auth_path: '/login'
+      canvas_url: 'http://dev.myapp.com/facebook'
+      app_secret: 'xxxxxxxxxxxx'
+
+    test:
+      app_id: 'fake_id'
+      app_context: 'my-app'
+      auth_path: '/login'
+      canvas_url: 'http://myapp.com/facebook'
+      app_secret: 'fake_secret'
+
+    production:
+      app_id: 'xxxxxxxxxxxxx'
+      app_context: 'my-app'
+      auth_path: '/login'
+      canvas_url: 'http://myapp.com/facebook'
+      app_secret: 'xxxxxxxxxxxx'
+
+- `app_id` - this is your Facebook App ID
+- `app_context` - this is your Canvas Page path, ie.
+  `http://apps.facebook.com/my-app-dev`
+- `auth_path` - the path in your application to your login page (must be
+  a string, not a logical route name)
+- `canvas_url` - this is the Facebook Canvas URL, the base URL that gets
+  to the Facebook iFrame pages for your Canvas app
+- `app_secret` - the Facebook App Secret code for your application
+
+Note: _We are assuming that you will be registering **two** facebook
+applications, one that you will be using to actively develop your
+application and the other for production use for your users._
+
+Include the fbauth modules in your application controllers
+
+    include FacebookAuthFunctions
+    include FbauthHelper
+
+In the controllers you want restricted to authorized users, or in your
+`Application` controller, add the filters
+
+    before_filter :require_facebook_auth
+
+Create the controller and method that will live at your `auth_path`
+specified in your facebook.yml file.
+
+    class AuthController < ApplicationController
+
+      # Use this if you've included FacebookAuthFunctions in your
+      # Application controller...
+      # skip_before_filter :require_facebook_auth
+
+      def login
+      end
+    end
+
+And then create your login template (we use HAML, but you can use ERB if
+you want.
+
+    %div.fblogin
+      You are not logged in to Facebook, please click here:
+      %fb:login-button{:perms => 'publish_stream'} Log In to Facebook
+
+    %div.fbadd
+      Please add this Application - it's great!
+      %fb:login-button{:perms => 'publish_stream'} Add This Application
+
+    %div.fbready
+      Please wait...
+
+    = fbauth_login_javascript(:login => '.fblogin', :add => '.fbadd', :ready => '.fbready')
+
+The three areas noted above are exposed in the following scenarios:
+
+- `:login` - this element is exposed when the user has not logged into
+  Facebook, they may or may not have added your application but we don't
+  know that yet.
+- `:add` - this element is exposed when the user is logged in to
+  Facebook but has not added / authorized your application. Note we are
+  requesting certain permissions when the app is added:
+  `<fb:login-button perms="publish_stream"></fb:login-button>`
+- `:ready` - once the user has satisfied the pop-ups that appear when
+  logging in and/or adding the application, or if the user loads this
+  screen and is already fully authenticated, this element appears and
+  a redirect is done to your application root_path
 
 ## Using the Facebook APIs ##
 
