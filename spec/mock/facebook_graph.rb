@@ -1,5 +1,5 @@
 class FacebookGraph
-  def self.call(path, access_token = nil, options = {})
+  def call(path, options = {})
     {
       'first_name' => 'John',
       'last_name' => 'Smith'
