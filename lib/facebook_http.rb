@@ -1,5 +1,6 @@
 require 'benchmark'
 require 'net/http'
+require 'net/https' # Required for Ruby 1.8.7
 require 'uri'
 require 'cgi'
 
