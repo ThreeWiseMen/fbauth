@@ -78,7 +78,7 @@ module FacebookHttp
   end
 
   def has_access_token?(options = {})
-    merged_options.has_key :access_token
+    merged_options.has_key? :access_token
   end
 
   def logger
