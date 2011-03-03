@@ -36,7 +36,7 @@ class FacebookAuth
     msgs = []
     unless self.uid.nil? || self.access_token.nil?
       begin
-        self.user_data = FacebookGraph.call(self.uid, self.access_token)
+        self.user_data = FacebookGraph.new(self.access_token).call(self.uid)
       rescue => e
         msgs << "Error calling FacebookGraph - #{e}"
       end

@@ -5,7 +5,12 @@ class FacebookQuery
 
   FB_API_URL = "https://api.facebook.com/method/fql.query"
 
-  def self.fql(query, access_token = nil, options = {})
-    get FB_API_URL, options.merge({ :format => "JSON", :query => query, :access_token => access_token })
+  def initialize(access_token = nil, options = {})
+    @options = options.merge({ :access_token => access_token })
+    @options.merge!({ :format => "JSON" }) unless @options.has_key?(:format)
+  end
+
+  def fql(query, access_token = nil, options = {})
+    get FB_API_URL, merged_options(options.merge({ :query => query }))
   end
 end
