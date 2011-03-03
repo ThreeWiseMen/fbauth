@@ -136,8 +136,13 @@ haven't (that we recall) come across the answers to these questions yet:
 
 # Change Log #
 
-v1.0.0.0 - Changed call semantics for FacebookGraph and FacebookQuery,
-           use objects instead of class methods
-         - Preparing for public release
-v0.9.9.6 - Raising info-rich exceptions when errors returned from
-           Facebook on graph calls
+v1.0.0.0
+
+- Changed call semantics for FacebookGraph and FacebookQuery,
+  use objects instead of class methods
+- Preparing for public release
+
+v0.9.9.6
+ 
+- Raising info-rich exceptions when errors returned from
+  Facebook on graph calls
