@@ -5,9 +5,6 @@ module FacebookAuthFunctions
   end
 
   def require_facebook_auth
-    # Prep IE so it will take our cookies in a Facebook iFrame
-    response.headers['P3P'] = 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"'
-
     setup_facebook_auth
     if @facebook_auth.nil?
       redirect_to build_auth_url
@@ -21,6 +18,9 @@ private
   end
 
   def facebook_auth
+    # Prep IE so it will take our cookies in a Facebook iFrame
+    response.headers['P3P'] = 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"'
+
     # If we have valid auth in session, use it
     data = parse_session
     auth = validate_and_save(data) unless data.nil?
@@ -70,6 +70,7 @@ private
       parms = JSON.parse(params[:session])
       logger.warn("Parsed facebook params from session parameter (deprecated)")
     elsif params[:signed_request].present?
+      logger.warn("Found signed_request param")
       begin
         parms = FacebookDecoder.decode(params[:signed_request])
         logger.warn("Parsed facebook params from signed_request parameter")
