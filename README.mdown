@@ -1,54 +1,143 @@
-FBAuth
-======
+# FBAuth #
 
-This gem provides authentication and basic Facebook functions for your Rails application.
+This gem provides authentication and basic Facebook functions for your
+Rails application.
 
-The Authentication Challenge
-----------------------------
+## The Authentication Challenge ##
 
-Facebook is an evolving platform, over the past couple years we've seen a lot of change in how it authenticates users of
-third-party applications.
+Facebook is an evolving platform, over the past couple years we've seen
+a lot of change in how it authenticates users of third-party
+applications.
 
-And as of this writing, authentication with the Javascript SDK remains broken due to the reliance on cross-domain
-cookies, which are simply not supported in mobile Safari, by default on Safari for Windows, and reportedly on the
-Android Webkit based browser.
+The documentation for Facebook is minimal, without historic reference or
+in-depth discussion of the different implementation scenarios that our
+applications may take.
 
-This plugin uses a few techniques to locate your "access token" and prefers to use the OAuth API to get what you need as
-a Facebook app to ensure your users have correctly added your app, authenticated in Facebook, and to communicate with
-the Graph API.
+For example, the preferred method of doing "Canvas" applications, those
+that live within the Facebook "wrapper" is now to use an iFrame. If you
+choose to utilize the Javascript Connect SDK and rely on its
+authentication mechanisms this will fail under any browsers that block
+cross-domain cookies - which is more prominent as time goes on due to
+the security risks involved in allowing cross-domain cookies.
+
+Therefore, as of this writing, applications using the prescribed iFrame
+style and using the JS SDK will fail on mobile Safari, Safari on
+Windows' default settings, and various mobile implementations of the
+Android browser.
+
+This plugin uses a few techniques to locate your "access token" and
+prefers to use the OAuth API to get what you need as a Facebook app to
+ensure your users have correctly added your app, authenticated in
+Facebook, and to communicate with the Graph and Query APIs.
 
 Here are the scenarios we currently handle:
 
-iFrame Apps
------------
+__iFrame Apps__
 
-- first page load as an iFrame app inside Facebook, where authentication params are sent in the URL used for your iFrame
-  - this is particularly required for mobile Safari and other browsers blocking cross-domain cookies by default
-  - handles the old session parameter, as well as the new signed_request parameter
+- first page load as an iFrame app inside Facebook, where authentication
+  params are sent in the URL used for your iFrame
+  - this is particularly required for mobile Safari and other browsers
+    blocking cross-domain cookies by default
+  - handles the old session parameter, as well as the new signed_request
+    parameter
 
 - loading from the cookie initialized by the JavaScript API
   - works great for browsers supporting cross-domain cookies by default
 
-- the access token you get is time-limited, if it has expired you need to be re-authenticated
+- the access token you get is time-limited, if it has expired you need
+  to be re-authenticated
 
-External (Connect) Apps
------------------------
+__External (Connect) Apps__
 
-- handling an OAuth exchange back & forth with Facebook to handle authentication and capture URL parameters back for
-  token
+- handling an OAuth exchange back & forth with Facebook to handle
+  authentication and capture URL parameters back for token
 
-Things Remaining Unclear
-========================
+## Integration with Your Rails App ##
 
-Documentation for the Facebook platform is a little fragmented, so we haven't (that we recall) come across the answers
-to these questions yet:
+Coming soon...
 
-- what timezone is the OAuth token expiry value in? (we get it in Epoch, no TZ data, currently assuming San Francisco)
+## Using the Facebook APIs ##
+
+### Graph API ###
+
+The Graph API gives you the ability to request a great deal of
+information about individual social relationships and perform basic
+updates to that graph (ie. posting news-feed events).
+
+Certain actions (posting changes, reading certain restricted attributes)
+are only available if you provide an access token and make an
+authenticated call.
+
+__Unauthenticated Call__
+
+    graph = FacebookGraph.new
+    graph.call('svetzal')
+
+This will retrieve publicly available information on the provided user's
+Facebook UID or handle in a Ruby hash structure.
+
+    {"name"=>"Steven Vetzal", "gender"=>"male", "id"=>"849395216", "last_name"=>"Vetzal",
+     "locale"=>"en_US", "link"=>"http://www.facebook.com/svetzal", "first_name"=>"Steven"}
+
+__Authenticated Call__
+
+    graph = FacebookGraph.new(fbauth.access_token)
+    graph.call('svetzal', { :scope => "birthday" })
+
+This will make a similar call but as an authenticated caller we can
+request a restricted scope, in this case information about the user's
+birthday (if our app has requested the birthday permission from the
+user).
+
+### Query API (FQL) ###
+
+__Unauthenticated Call__
+
+    query = FacebookQuery.new
+    query.fql('SELECT name, first_name, last_name FROM user WHERE uid in ("849395216","58001611","1018515154")')
+
+FQL is handy for performing multiple lookups at once, and can save you a
+lot of latency.
+
+    [
+      {"name"=>"Steven Vetzal", "last_name"=>"Vetzal", "first_name"=>"Steven"},
+      {"name"=>"Nate Smith", "last_name"=>"Smith", "first_name"=>"Nate"},
+      {"name"=>"Craig Savolainen", "last_name"=>"Savolainen", "first_name"=>"Craig"}
+    ]
+
+__Authenticated Call__
+
+    query = FacebookQuery.new(fbauth.access_token)
+
+__Manually Building an Access Token__
+
+If you scan your logs, you'll see the `signed_request` OAuth GET
+parameter being sent to your application. You can manually build
+yourself an authentication token from this using the following code.
+
+    data = FacebookDecoder.decode('{"signed_request"=>"oXWWpLi2tX7QW3cjX...(removed)"}')
+    fbauth = FacebookAuth.create(data)
+    fbauth.validate
+
+The `.validate` step is optional, but pre-warns you if the token you are
+about to use is good. If it is not, you can find out why by looking at
+`fbauth.validation_error`.
+
+# Things Remaining Unclear #
+
+Documentation for the Facebook platform is a little fragmented, so we
+haven't (that we recall) come across the answers to these questions yet:
+
+- what timezone is the OAuth token expiry value in? (we get it in Epoch,
+  no TZ data, currently assuming San Francisco)
 - what happens when time approaches the OAuth token expiry?
     - do we get a new one?
     - are we expected to stop functioning and redirect to a FB login?
 
-Change Log
-==========
+# Change Log #
 
-v0.9.9.6 - Raising info-rich exceptions when errors returned from Facebook on graph calls
+v1.0.0.0 - Changed call semantics for FacebookGraph and FacebookQuery,
+           use objects instead of class methods
+         - Preparing for public release
+v0.9.9.6 - Raising info-rich exceptions when errors returned from
+           Facebook on graph calls

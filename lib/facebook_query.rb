@@ -10,7 +10,7 @@ class FacebookQuery
     @options.merge!({ :format => "JSON" }) unless @options.has_key?(:format)
   end
 
-  def fql(query, access_token = nil, options = {})
+  def fql(query, options = {})
     get FB_API_URL, merged_options(options.merge({ :query => query }))
   end
 end

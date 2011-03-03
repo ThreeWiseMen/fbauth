@@ -5,7 +5,12 @@ require 'cgi'
 module FacebookHttp
 
   def build_get_url(url, params = {})
-    url + build_query_string(params)
+    q = build_query_string(params)
+    if q
+      url + q
+    else
+      url
+    end
   end
 
   def get(url, params = {})
