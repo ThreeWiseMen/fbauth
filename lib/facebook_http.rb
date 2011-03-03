@@ -34,7 +34,7 @@ module FacebookHttp
         http.finish if http.started?
       end
     end
-    logger.warn("Facebook GET call to #{uri.to_s} completed in #{bench.total} seconds")
+    logger.warn("Facebook GET call to #{uri.to_s} completed in #{bench.real} seconds")
     json
   end
 
@@ -58,7 +58,7 @@ module FacebookHttp
         http.finish if http.started?
       end
     end
-    logger.warn("Facebook POST call to #{uri.to_s} completed in #{bench.total} seconds")
+    logger.warn("Facebook POST call to #{uri.to_s} completed in #{bench.real} seconds")
     json
   end
 
