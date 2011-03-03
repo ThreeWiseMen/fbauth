@@ -19,7 +19,7 @@ class FacebookGraph
   #   Available options: message, picture, link, name, caption, description
   def publish_to_member_feed(uid, options)
     raise "access_token required" unless has_access_token?(options)
-    if %w{staging production}.include? ENV['RAILS_ENV']
+    if %w{staging production}.include? Rails.env
       post "#{FB_GRAPH_URL}/#{uid}/feed", merged_options(options)
     end
   end
