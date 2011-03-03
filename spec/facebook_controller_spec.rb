@@ -26,7 +26,6 @@ describe FacebookController do
       @controller.setup_facebook_auth.access_token.should == '118891648123934|2.MGFCDPDoAYofGkciJvBxtQ__.3600.1296666000-849395216|Z-X76UskS-QI_7uDjSJGQNgBLzQ'
       @controller.setup_facebook_auth.uid.should == '849395216'
       @controller.setup_facebook_auth.expires.strftime('%Y-%m-%d %H:%M:%S').should == "2011-02-02 12:00:00"
-puts @controller.setup_facebook_auth.inspect
       @controller.setup_facebook_auth.user_data['first_name'].should == 'John'
       @controller.setup_facebook_auth.user_data['last_name'].should == 'Smith'
     end

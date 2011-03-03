@@ -8,7 +8,7 @@ describe FacebookQuery, "basic query call" do
       fquery = FacebookQuery.new
       value = fquery.fql(fql_query)
       value.should be_empty
-      fquery.url.should == "https://api.facebook.com/method/fql.query?format=JSON&query=SELECT+name+FROM+user+WHERE+id%3D%271%27"
+      fquery.url.should == "https://api.facebook.com/method/fql.query?format=JSON&query=SELECT%20name%20FROM%20user%20WHERE%20id='1'"
     end
 
     it "should call the query API with the right url and access token" do
@@ -16,7 +16,7 @@ describe FacebookQuery, "basic query call" do
       fquery = FacebookQuery.new("12345")
       value = fquery.fql(fql_query)
       value.should be_empty
-      fquery.url.should == "https://api.facebook.com/method/fql.query?access_token=12345&format=JSON&query=SELECT+name+FROM+user+WHERE+id%3D%271%27"
+      fquery.url.should == "https://api.facebook.com/method/fql.query?access_token=12345&format=JSON&query=SELECT%20name%20FROM%20user%20WHERE%20id='1'"
     end
 
   end
