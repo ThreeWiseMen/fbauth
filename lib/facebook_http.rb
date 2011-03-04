@@ -42,7 +42,7 @@ module FacebookHttp
         end
       end
       logger.warn("Facebook GET call to #{uri.to_s} completed in #{bench.real} seconds")
-      Rails.cache.write(uri.to_s, json, :expires_in => 120) if json && caching_enabled?
+      Rails.cache.write(uri.to_s, json, :expires_in => 60) if json && caching_enabled?
     end
     json
   end
