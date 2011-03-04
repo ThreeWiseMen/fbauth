@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+
+$:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
+
+require 'rubygems'
+require 'irb'
+require 'irb/completion'
+require 'fbauth'
+gem 'rails'
+
+class Logger
+  def initialize
+    @msgs = []
+  end
+  def warn msg
+    @msgs << msg
+  end
+  def output
+    @msgs.each do |msg|
+      puts msg
+    end
+    @msgs = []
+    nil
+  end
+end
+
+module Rails
+  def self.logger
+    @@logger ||= Logger.new
+  end
+  def self.env
+    "staging"
+  end
+end
+
+IRB.start

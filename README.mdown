@@ -227,6 +227,15 @@ haven't (that we recall) come across the answers to these questions yet:
 
 # Change Log #
 
+v1.0.0.2
+
+- Fixed bug where timing instrumentation reporting CPU time rather than
+  wall time
+
+v1.0.0.1
+
+- Added console application for quick testing, `script/console`
+
 v1.0.0.0
 
 - Changed call semantics for FacebookGraph and FacebookQuery,
