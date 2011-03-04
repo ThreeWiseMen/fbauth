@@ -36,10 +36,9 @@ private
     # If no valid session auth or params auth, last chance try the JS SDK
     data = parse_cookie
     auth = validate_and_save(data) unless data.nil?
+    return auth unless auth.nil?
 
-    logger.warn("Unable to parse any security params for request - cold authentication required") unless auth
-
-    return auth
+    logger.warn("Unable to parse any security params for request - cold authentication required")
   end
 
   def validate_and_save data
