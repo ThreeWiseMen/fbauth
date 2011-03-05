@@ -227,6 +227,11 @@ haven't (that we recall) come across the answers to these questions yet:
 
 # Change Log #
 
+v1.1.0.2
+
+- Added memcached caching of Facebook GET data, 60 seconds expiry
+- Fixed bug in Facebook JS SDK cookie interception for authentication
+
 v1.0.0.2
 
 - Fixed bug where timing instrumentation reporting CPU time rather than
