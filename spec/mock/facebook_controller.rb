@@ -17,6 +17,9 @@ class FacebookController
     def host_with_port
       "localhost:3000"
     end
+    def post?
+      false
+    end
   end
 
   class MockResponse
