@@ -9,9 +9,9 @@
   end
 end
 
-require 'facebook_decoder.rb'
-require 'facebook_auth.rb'
-require 'facebook_config.rb'
-require 'facebook_http.rb'
-require 'facebook_graph.rb'
-require 'facebook_query.rb'
+require 'fbauth/decoder.rb'
+require 'fbauth/auth.rb'
+require 'fbauth/config.rb'
+require 'fbauth/http.rb'
+require 'fbauth/graph.rb'
+require 'fbauth/query.rb'

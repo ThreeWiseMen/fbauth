@@ -5,6 +5,7 @@ $:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
 require 'rubygems'
 require 'irb'
 require 'irb/completion'
+require 'spec/mock/actioncontroller_base.rb'
 require 'fbauth'
 gem 'rails'
 
