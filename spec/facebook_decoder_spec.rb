@@ -37,4 +37,20 @@ describe FacebookDecoder, "decode" do
       parms.should == nil
     end
   end
+
+  context "balancing balanced string" do
+    it "should not touch already balanced string" do
+      FacebookDecoder.balance('{"key":"value"}').should == '{"key":"value"}'
+      FacebookDecoder.balance('{"key":"value"').should == '{"key":"value"}'
+      FacebookDecoder.balance('{"key":"value').should == '{"key":"value"}'
+      FacebookDecoder.balance(
+        '{"algorithm":"HMAC-SHA256","expires":1296666000,"issued_at":1296661835,"oauth_token":"118891648123934|2.MGFCDPDoAYofGkciJvBxtQ__.3600.1296666000-849395216|Z-X76UskS-QI_7uDjSJGQNgBLzQ","user":{"locale":"en_US","country":"ca"},"user_id":"849395216"'
+      ).should ==
+        '{"algorithm":"HMAC-SHA256","expires":1296666000,"issued_at":1296661835,"oauth_token":"118891648123934|2.MGFCDPDoAYofGkciJvBxtQ__.3600.1296666000-849395216|Z-X76UskS-QI_7uDjSJGQNgBLzQ","user":{"locale":"en_US","country":"ca"},"user_id":"849395216"}'
+      FacebookDecoder.balance(
+        '{"algorithm":"HMAC-SHA256","expires":1296676800,"issued_at":1296671399,"oauth_token":"118891648123934|2.yyN0kTkArkaJpvRYIj_EfA__.3600.1296676800-58001611|qImiNUs-AWKthCejNhq3o-Dewok","user":{"locale":"en_US","country":"ca"},"user_id":"58001611'
+      ).should ==
+        '{"algorithm":"HMAC-SHA256","expires":1296676800,"issued_at":1296671399,"oauth_token":"118891648123934|2.yyN0kTkArkaJpvRYIj_EfA__.3600.1296676800-58001611|qImiNUs-AWKthCejNhq3o-Dewok","user":{"locale":"en_US","country":"ca"},"user_id":"58001611"}'
+    end
+  end
 end
