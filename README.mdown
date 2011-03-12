@@ -227,6 +227,11 @@ haven't (that we recall) come across the answers to these questions yet:
 
 # Change Log #
 
+v1.2.0.4
+
+- Added support for Facebook iFrame POST behaviour
+- Fixed bug in Memcache client where we were using keys > 250 chars
+
 v1.1.0.2
 
 - Added memcached caching of Facebook GET data, 60 seconds expiry
