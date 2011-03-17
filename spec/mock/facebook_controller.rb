@@ -14,10 +14,19 @@ class FacebookController
     def protocol
       "http://"
     end
+    def host
+      "localhost"
+    end
+    def port
+      "3000"
+    end
     def host_with_port
-      "localhost:3000"
+      "#{self.host}:#{self.port}"
     end
     def post?
+      false
+    end
+    def ssl?
       false
     end
   end
