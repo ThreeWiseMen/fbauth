@@ -4,8 +4,8 @@ module FacebookAuthFunctions
   OLD_FB_SESSION_PARAMS_KEY = :session
   FB_SIGNED_REQUEST_KEY = :signed_request
 
-  def setup_facebook_auth
-    @facebook_auth ||= facebook_auth
+  def setup_facebook_auth auth
+    @facebook_auth = auth ||= facebook_auth
   end
 
   def require_facebook_auth
