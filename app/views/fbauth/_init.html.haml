@@ -1,7 +1,11 @@
 - if auto_resize
   :javascript
-    FB.init({appId: '#{FacebookConfig['app_id']}', status: true, cookie: true, xfbml: true, channelUrl: '#{channel_url}'});
-    FB.Canvas.setAutoResize();
+    $(document).ready(function() {
+      FB.init({appId: '#{FacebookConfig['app_id']}', status: true, cookie: true, xfbml: true, channelUrl: '#{channel_url}'});
+      FB.Canvas.setAutoResize();
+    });
 - else
   :javascript
-    FB.init({appId: '#{FacebookConfig['app_id']}', status: true, cookie: true, xfbml: true});
+    $(document).ready(function() {
+      FB.init({appId: '#{FacebookConfig['app_id']}', status: true, cookie: true, xfbml: true});
+    });
