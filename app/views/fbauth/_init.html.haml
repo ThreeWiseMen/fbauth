@@ -1,11 +1,23 @@
 - if auto_resize
   :javascript
-    $(document).ready(function() {
+    window.fbAsyncInit = function() {
       FB.init({appId: '#{FacebookConfig['app_id']}', status: true, cookie: true, xfbml: true, channelUrl: '#{channel_url}'});
       FB.Canvas.setAutoResize();
-    });
+      if (typeof window.fbAuthInit == 'function') {
+        window.fbAuthInit();
+      }
+    };
 - else
   :javascript
-    $(document).ready(function() {
+    window.fbAsyncInit = function() {
       FB.init({appId: '#{FacebookConfig['app_id']}', status: true, cookie: true, xfbml: true});
-    });
+      if (typeof window.fbAuthInit == 'function') {
+        window.fbAuthInit();
+      }
+    };
+:javascript
+  (function() {
+    var e = document.createElement('script'); e.async = true;
+    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+    document.getElementById('fb-root').appendChild(e);
+  }());
