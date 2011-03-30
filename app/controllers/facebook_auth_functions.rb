@@ -12,8 +12,7 @@ module FacebookAuthFunctions
     setup_facebook_auth
     if @facebook_auth.nil?
       redirect_to build_auth_url
-    end
-    if signed_params_present? && request.post?
+    elsif signed_params_present? && request.post?
       # If Facebook POST with signed_params, redirect to original URI using GET
       redirect_to request.request_uri
     end

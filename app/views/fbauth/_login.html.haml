@@ -1,9 +1,9 @@
 :javascript
   $(document).ready(function() {
     fbauth_hide_panels();
+    FB.getLoginStatus(function(response) { fbauth_update_page(response); });
+    FB.Event.subscribe('auth.statusChange', function(response) { fbauth_update_page(response); });
   });
-  FB.getLoginStatus(function(response) { fbauth_update_page(response); });
-  FB.Event.subscribe('auth.statusChange', function(response) { fbauth_update_page(response); });
   function fbauth_hide_panels() {
     $('#{login_el}').hide();
     $('#{add_el}').hide();
