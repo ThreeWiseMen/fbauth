@@ -3,6 +3,7 @@
     fbauth_hide_panels();
     FB.getLoginStatus(function(response) { fbauth_update_page(response); });
     FB.Event.subscribe('auth.statusChange', function(response) { fbauth_update_page(response); });
+    console.log("FBAuth initialized, awaiting FB session events");
   };
   function fbauth_hide_panels() {
     $('#{login_el}').hide();
@@ -10,6 +11,7 @@
     $('#{ready_el}').hide();
   }
   function fbauth_update_page(response) {
+    console.log("Event received - " + response.status);
     fbauth_hide_panels();
     if (response.status == 'connected') {
       $('#{ready_el}').show();
