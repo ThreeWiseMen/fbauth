@@ -15,3 +15,15 @@ require 'fbauth/config.rb'
 require 'fbauth/http.rb'
 require 'fbauth/graph.rb'
 require 'fbauth/query.rb'
+
+class Engine < Rails::Engine
+  engine_name :fbauth
+
+  initializer "add helpers" do |app|
+    ActionView::Base.send :include, FbauthHelper
+  end
+
+  initializer "static assets" do |app|
+    app.middleware.use ::ActionDispatch::Static, "#{root}/public"
+  end
+end

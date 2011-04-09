@@ -6,11 +6,11 @@ class FacebookConfig
   private
 
   def self.get_environment
-    read_yaml[ENV["RAILS_ENV"]]
+    read_yaml[Rails.env]
   end
 
   def self.read_yaml
-    file = File.join(::RAILS_ROOT, 'config', 'facebook.yml')
+    file = File.join(Rails.root, 'config', 'facebook.yml')
     YAML.parse(ERB.new(IO.read(file)).result)
   end
 
